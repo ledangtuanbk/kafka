@@ -3,10 +3,9 @@ services:
   zookeeper:
     image: 'bitnami/zookeeper:3.6'
     tmpfs: "/datalog"
-    ports:
-      - "${ZOO_PORT:-2181}:2181"
     environment:
       - ALLOW_ANONYMOUS_LOGIN=yes
+    restart: always
   kafka:
     image: 'bitnami/kafka:3.0'
     ports:
@@ -19,3 +18,4 @@ services:
       - ALLOW_PLAINTEXT_LISTENER=yes
     depends_on:
       - zookeeper
+    restart: always
